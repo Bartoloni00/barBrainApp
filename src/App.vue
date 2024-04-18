@@ -1,8 +1,10 @@
 <script setup>
+import FooterSection from './components/FooterSection.vue';
 </script>
 
 <template>
-  <h1>BarBrainApp</h1>
-  <p>¡¡¡La mejor pagina para encontrar recetas de tragos y sorprender a tus familiares y amigos!!!</p>
-  <router-view></router-view>
+  <main class="bg-bg-100 ">
+    <router-view></router-view>
+  </main>
+  <FooterSection/>
 </template>
