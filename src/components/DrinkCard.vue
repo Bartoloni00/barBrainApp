@@ -1,4 +1,6 @@
 <script setup>
+import BaseTag from './BaseTag.vue';
+
     const props = defineProps({
         drink:{
             type: Object,
@@ -14,7 +16,10 @@
         <router-link :to="'drinks/'+drink._id">
             <h2 class="text-2xl font-semibold text-accent-100">{{ drink.name }}</h2>
         </router-link>
-        <p class="text-text-200">Categoria: {{ drink.category }}</p>
-        <p class="pb-4">{{ drink.descripcion }}</p>
-    </article>
+        <p>{{ drink.descripcion }}</p>
+        <div class="flex gap-1">
+            <BaseTag>{{ drink.category }}</BaseTag>
+            <BaseTag v-for="ingredient in drink.ingredients">{{ ingredient.name }}</BaseTag>
+        </div>
+    </article  class="pb-4">
 </template>

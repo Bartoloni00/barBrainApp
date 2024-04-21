@@ -39,10 +39,10 @@ const props = defineProps({
     class="h-[5vh] text-text-300 border-b border-primary-100 my-4">
         <ul class="flex max-w-3xl w-full lg:mx-52 gap-8">
             <li>
-                <router-link>Todo</router-link>
+                <router-link to="/search">Todo</router-link>
             </li>
             <li>
-                <router-link>Imagenes</router-link>
+                <router-link to="/search-image">Imagenes</router-link>
             </li>
         </ul>
     </nav>
