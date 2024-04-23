@@ -17,7 +17,7 @@ import BaseTag from './BaseTag.vue';
             <h2 class="text-2xl font-semibold text-accent-100">{{ drink.name }}</h2>
         </router-link>
         <p>{{ drink.descripcion }}</p>
-        <div class="flex gap-1">
+        <div class="flex gap-1 flex-wrap">
             <BaseTag>{{ drink.category }}</BaseTag>
             <BaseTag v-for="ingredient in drink.ingredients">{{ ingredient.name }}</BaseTag>
         </div>

@@ -3,6 +3,8 @@ import SearchHeader from '../components/SearchHeader.vue';
 import BaseTitle from '../components/BaseTitle.vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
+import SearchInput from '../components/SearchInput.vue';
+import BaseButton from '../components/common/BaseButton.vue';
 
 const useSearch = () => {
     // si searchVar.value esta vacio no se tiene que enviar.
@@ -45,9 +47,13 @@ const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
             v-model="wordInSearchVar"
             @keyup.enter="handleSearchDrink"
             >
+            <!-- <SearchInput/> -->
             <div class="flex justify-around items-center mt-5 w-5/12 text-lg">
+                <!-- <BaseButton>Buscar con BarBrainDB</BaseButton> -->
                 <button type="submit" class="bg-bg-200 py-2 px-3 min-w-[190px] text-text-100 rounded-lg hover:bg-bg-300">Buscar con BarBrainDB</button>
                 <router-link to="/random" class="bg-bg-200 py-2 px-3 min-w-[190px] text-text-100 rounded-lg hover:bg-bg-300 text-center">Voy a tener suerte</router-link>
+                <!-- <BaseButton>Voy a tener suerte</BaseButton> -->
+                
             </div>
         </form>
     </section>

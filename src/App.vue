@@ -8,3 +8,5 @@ import FooterSection from './components/FooterSection.vue';
   </main>
   <FooterSection/>
 </template>
+<style scoped>
+</style>

@@ -1,4 +1,5 @@
 export async function call({ uri, method = "GET", body = undefined }) {
+  // console.log('consulta a la db');
     const url = `http://localhost:9763/${uri}`
     const options = {
       method,

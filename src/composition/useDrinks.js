@@ -9,11 +9,9 @@ export default function useDrinks(word)
     onMounted(async () => {
         loadingDrinks.value = true;
         searcher(word).then(allDrinks => {
-          console.log(allDrinks);
           drinks.value = allDrinks;
           loadingDrinks.value = false;
         });
-        
     })
     
     return {
