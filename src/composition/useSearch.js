@@ -10,7 +10,6 @@ export default function useSearch ()
     const router = useRouter()
 
     const handleSearchDrink = ()=>{
-        console.log(wordInSearchVar);
         if (processingForm.value) return;
         processingForm.value = true
         if(wordInSearchVar.value == '') return;

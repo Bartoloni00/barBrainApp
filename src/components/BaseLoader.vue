@@ -19,7 +19,7 @@
     border-bottom: 4px solid #FFD166;
     background: 
       linear-gradient(#8f0010 0 0) bottom no-repeat content-box, 
-      #957200;
+      #FFD166;
     mix-blend-mode: darken;
     animation: l1 1.5s infinite linear;
   }

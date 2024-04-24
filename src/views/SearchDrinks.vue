@@ -4,9 +4,13 @@ import DrinkCard from "../components/DrinkCard.vue";
 import SearchHeader from "../components/SearchHeader.vue";
 import useDrinks from "../composition/useDrinks.js"
 import {useRoute} from 'vue-router'
+import {watch} from 'vue'
 
 const route = useRoute()
-const {loadingDrinks,drinks} = useDrinks(route.query.search)
+const {uploadSearcherDrinks,loadingDrinks,drinks} = useDrinks(route.query.search)
+
+watch(() => route.query.search, (newSearch, oldSearch) => uploadSearcherDrinks(newSearch))
+
 </script>
 <template>
     <SearchHeader/>

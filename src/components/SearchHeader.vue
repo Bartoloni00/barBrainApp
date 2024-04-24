@@ -2,6 +2,7 @@
 import BaseTitle from './BaseTitle.vue';
 import SearchInput from './SearchInput.vue';
 import useSearch from '../composition/useSearch.js'
+import {useRoute} from 'vue-router'
 
 const props = defineProps({
     withNavBar:{
@@ -21,14 +22,15 @@ const props = defineProps({
     }
 })
 
-const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
+const route = useRoute()
+const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch(route.query.search)
 </script>
 <template>
     <header class="h-[14vh] bg-bg-100 text-text-100 flex items-baseline px-5 justify-end gap-5">
         <router-link to="/" v-if="withLogo">
             <BaseTitle class="text-2xl"></BaseTitle>
         </router-link>
-        <form @submit.prevent="handleSearchDrink" action="" method="get" class="w-full mt-5" v-if="withSearch">
+        <form @submit.prevent="handleSearchDrink" action="#" method="get" class="w-full mt-5" v-if="withSearch">
             <SearchInput 
                 type="search" 
                 name="searchBar" 
@@ -46,7 +48,7 @@ const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
                 <router-link to="/search">Todo</router-link>
             </li>
             <li>
-                <router-link to="/search-image">Imagenes</router-link>
+                <!-- <router-link to="/search-image">Imagenes</router-link> -->
             </li>
         </ul>
     </nav>
