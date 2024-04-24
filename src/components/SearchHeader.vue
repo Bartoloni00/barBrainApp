@@ -1,5 +1,7 @@
 <script setup>
 import BaseTitle from './BaseTitle.vue';
+import SearchInput from './SearchInput.vue';
+import useSearch from '../composition/useSearch.js'
 
 const props = defineProps({
     withNavBar:{
@@ -18,25 +20,27 @@ const props = defineProps({
         default: true
     }
 })
+
+const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
 </script>
 <template>
-    <header class="h-[14vh] bg-bg-100 text-text-100 flex items-center px-5 justify-end gap-5">
+    <header class="h-[14vh] bg-bg-100 text-text-100 flex items-baseline px-5 justify-end gap-5">
         <router-link to="/" v-if="withLogo">
             <BaseTitle class="text-2xl"></BaseTitle>
         </router-link>
-        <form action="" method="get" class="w-full mt-5" v-if="withSearch">
-            <input 
-            type="search" 
-            name="" 
-            id=""
-            class="text-l max-w-3xl w-full min-w-60 p-2 px-3 border-2 border-primary-100 rounded-3xl bg-bg-200 focus:outline-primary-200 focus:bg-bg-300 focus:border-bg-300"
-            >
+        <form @submit.prevent="handleSearchDrink" action="" method="get" class="w-full mt-5" v-if="withSearch">
+            <SearchInput 
+                type="search" 
+                name="searchBar" 
+                id="searchBar"
+                @update:search-word="e =>{ wordInSearchVar = e, processingForm = false}"
+                />
         </form>
         <a href="dashboard" class="hover:underline text-lg pt-2 text-text-100">Panel</a>
     </header>
     <nav 
     v-if="withNavBar"
-    class="h-[5vh] text-text-300 border-b border-primary-100 my-4">
+    class="h-[5vh] text-text-300 border-b border-primary-100 mb-4">
         <ul class="flex max-w-3xl w-full lg:mx-52 gap-8">
             <li>
                 <router-link to="/search">Todo</router-link>

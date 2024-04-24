@@ -10,6 +10,8 @@ export const getAllDrinks = async ()=>{
 }
 
 export const searcher = async (word)=>{
+  if(word == 'todos' ||word == 'tragos' || word == 'todos' || word == 'all') return await getAllDrinks()
+
   const foundCategory = await searcherForCategory(word)
   if (foundCategory) return prependCoverUrlToImages(await call({ uri: `drinks?category=${word}` }));
 

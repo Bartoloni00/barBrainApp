@@ -1,4 +1,4 @@
-import {getAllDrinks, searcher} from '../services/drinks.js'
+import {searcher} from '../services/drinks.js'
 import { onMounted, ref } from "vue";
 
 export default function useDrinks(word)
