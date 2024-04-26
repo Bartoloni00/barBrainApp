@@ -15,14 +15,7 @@ export default function useDrinks(word)
         });
     }
 
-    onMounted(async () => {
-        loadingDrinks.value = true;
-        let searchWord = word ?? 'all'
-        searcher(searchWord).then(allDrinks => {
-          drinks.value = allDrinks;
-          loadingDrinks.value = false;
-        });
-    })
+    onMounted(async () => uploadSearcherDrinks(word))
     
     return {
       uploadSearcherDrinks,

@@ -1,42 +1,42 @@
 <script setup>
 import LoadingContent from "../components/LoadingContent.vue";
-import DrinkCard from "../components/DrinkCard.vue";
 import SearchHeader from "../components/SearchHeader.vue";
 import useDrinks from "../composition/useDrinks.js"
 import {useRoute} from 'vue-router'
-import {watch} from 'vue'
+import {ref, watch} from 'vue'
+import ListDrinks from "./searchDrinks/ListDrinks.vue";
+import SearchImages from "./searchDrinks/SearchImages.vue";
 
 const route = useRoute()
+const wordSeacher = ref()
+wordSeacher.value = route.query.search
 const {uploadSearcherDrinks,loadingDrinks,drinks} = useDrinks(route.query.search)
 
-watch(() => route.query.search, (newSearch, oldSearch) => uploadSearcherDrinks(newSearch))
+watch(() => route.query.search, (newSearch, oldSearch) => {
+    uploadSearcherDrinks(newSearch)
+    wordSeacher.value = newSearch
+})
 
+const showImages = ref(false)
+watch(()=>route.query, (newQ, oldQ)=>{
+    if (newQ.imgs) {
+        showImages.value = true
+    } else {
+        showImages.value = false
+    }
+})
 </script>
 <template>
-    <SearchHeader/>
+    <SearchHeader :word-searcher="wordSeacher"/>
     <LoadingContent :loading="!loadingDrinks">
-        <section class="flex min-h-[70vh]">
-                <section class="flex flex-col gap-y-2 max-w-3xl ml-52"  v-if="drinks.length >= 1">
-                    <template v-for="drink in drinks">
-                        <DrinkCard 
-                            :drink="drink"
-                        />
-                    </template>
-                </section>
-                <section v-else class="flex flex-col gap-y-2 max-w-3xl ml-52 text-text-100">
-                    <p>No hay resultados que coincidan con esa busqueda</p>
-                </section>
-            <article v-if="drinks.length >= 3" class="w-full mr-52 flex flex-wrap gap-2 h-[460px] items-center justify-center">
-                <router-link :to="'drinks/'+drinks[0]._id" class="col-span-2">
-                    <img class="rounded-2xl border border-bg-300" :src="drinks[2].cover" alt="">
-                </router-link>
-                <router-link :to="'drinks/'+drinks[1]._id" class="row-start-2  w-[47%]">
-                    <img class="rounded-2xl border border-bg-300" :src="drinks[1].cover" alt="">
-                </router-link>
-                <router-link :to="'drinks/'+drinks[2]._id" class="row-start-2  w-[47%]">
-                    <img class="rounded-2xl border border-bg-300" :src="drinks[0].cover" alt="">
-                </router-link>
-            </article>
-        </section>
+        <ListDrinks
+        v-if="!showImages"
+        :drinks="drinks"
+        :word-seacher="wordSeacher"
+        />
+        <SearchImages
+        v-else
+        :drinks="drinks"
+        />
     </LoadingContent>
 </template>

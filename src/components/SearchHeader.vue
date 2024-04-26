@@ -2,7 +2,6 @@
 import BaseTitle from './BaseTitle.vue';
 import SearchInput from './SearchInput.vue';
 import useSearch from '../composition/useSearch.js'
-import {useRoute} from 'vue-router'
 
 const props = defineProps({
     withNavBar:{
@@ -19,11 +18,14 @@ const props = defineProps({
         type: Boolean,
         required: false,
         default: true
+    },
+    wordSearcher: {
+        type: String,
+        required: false
     }
 })
 
-const route = useRoute()
-const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch(route.query.search)
+const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
 </script>
 <template>
     <header class="h-[14vh] bg-bg-100 text-text-100 flex items-baseline px-5 justify-end gap-5">
@@ -45,10 +47,10 @@ const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch(route.que
     class="h-[5vh] text-text-300 border-b border-primary-100 mb-4">
         <ul class="flex max-w-3xl w-full lg:mx-52 gap-8">
             <li>
-                <router-link to="/search">Todo</router-link>
+                <router-link :to="`/search${wordSearcher?`?search=${wordSearcher}`:''}`">Todo</router-link>
             </li>
             <li>
-                <!-- <router-link to="/search-image">Imagenes</router-link> -->
+                <router-link :to="`/search?search=${wordSearcher}&imgs=${wordSearcher}`">Imagenes</router-link>
             </li>
         </ul>
     </nav>
