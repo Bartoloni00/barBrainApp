@@ -1,9 +1,9 @@
 <script setup>
-import SearchHeader from '../components/SearchHeader.vue';
-import LoadingContent from '../components/LoadingContent.vue';
+import SearchHeader from '@/components/SearchHeader.vue';
+import LoadingContent from '@/components/LoadingContent.vue';
 
-import useDrink from '../composition/useDrink.js'
-import DrinkDetails from '../components/DrinkDetails.vue';
+import useDrink from '@/composition/useDrink.js'
+import DrinkDetails from '@/components/DrinkDetails.vue';
 
 const {loadingDrink, drink} = useDrink()
 </script>

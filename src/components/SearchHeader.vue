@@ -26,6 +26,7 @@ const props = defineProps({
 })
 
 const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
+
 </script>
 <template>
     <header class="h-[14vh] bg-bg-100 text-text-100 flex items-baseline px-5 justify-end gap-5">
@@ -50,7 +51,7 @@ const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
                 <router-link :to="`/search${wordSearcher?`?search=${wordSearcher}`:''}`">Todo</router-link>
             </li>
             <li>
-                <router-link :to="`/search?search=${wordSearcher}&imgs=${wordSearcher}`">Imagenes</router-link>
+                <router-link :to="`/search${wordSearcher ? `?search=${wordSearcher}&imgs=${wordSearcher}` : ''}`">Imagenes</router-link>
             </li>
         </ul>
     </nav>

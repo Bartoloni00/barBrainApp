@@ -1,9 +1,9 @@
 <script setup>
-import SearchHeader from '../components/SearchHeader.vue';
-import BaseTitle from '../components/BaseTitle.vue';
-import SearchInput from '../components/SearchInput.vue';
-import BaseButton from '../components/common/BaseButton.vue';
-import useSearch from '../composition/useSearch.js'
+import SearchHeader from '@/components/SearchHeader.vue';
+import BaseTitle from '@/components/BaseTitle.vue';
+import SearchInput from '@/components/SearchInput.vue';
+import BaseButton from '@/components/common/BaseButton.vue';
+import useSearch from '@/composition/useSearch.js'
 
 const {wordInSearchVar, handleSearchDrink} = useSearch()
 

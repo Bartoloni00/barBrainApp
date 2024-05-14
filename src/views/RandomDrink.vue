@@ -1,9 +1,9 @@
 <script setup>
-import SearchHeader from '../components/SearchHeader.vue';
-import LoadingContent from '../components/LoadingContent.vue'
-import DrinkDetails from '../components/DrinkDetails.vue'
+import SearchHeader from '@/components/SearchHeader.vue';
+import LoadingContent from '@/components/LoadingContent.vue'
+import DrinkDetails from '@/components/DrinkDetails.vue'
 
-import useRandomDrink from '../composition/useRandomDrink';
+import useRandomDrink from '@/composition/useRandomDrink';
 
 const {loadingDrink, drink} = useRandomDrink()
 </script>

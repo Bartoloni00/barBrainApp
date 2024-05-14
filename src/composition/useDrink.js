@@ -1,5 +1,5 @@
 import {onMounted, ref} from 'vue'
-import { getDrinkByID } from '../services/drinks.js'
+import { getDrinkByID } from '@/services/drinks.js'
 import { useRoute } from 'vue-router';
 
 export default function useDrink () 

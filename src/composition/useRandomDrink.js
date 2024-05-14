@@ -1,4 +1,4 @@
-import { getRandomDrink } from "../services/drinks"
+import { getRandomDrink } from "@/services/drinks"
 import {onMounted, ref} from 'vue'
 
 export default function useRandomDrink()

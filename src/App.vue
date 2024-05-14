@@ -1,5 +1,5 @@
 <script setup>
-import FooterSection from './components/FooterSection.vue';
+import FooterSection from '@/components/FooterSection.vue';
 </script>
 
 <template>

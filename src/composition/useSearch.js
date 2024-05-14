@@ -8,7 +8,6 @@ export default function useSearch ()
     const processingForm = ref(false)
     const wordInSearchVar = ref('')
     const router = useRouter()
-
     const handleSearchDrink = ()=>{
         if (processingForm.value) return;
         processingForm.value = true
@@ -16,10 +15,9 @@ export default function useSearch ()
 
         router.push({path: '/search', query:{search: wordInSearchVar.value}})
     }
-
     return {
         processingForm,
         wordInSearchVar,
-        handleSearchDrink
+        handleSearchDrink,
     }
 }

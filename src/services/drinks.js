@@ -1,26 +1,25 @@
-import { call } from "../helpers/http"
+import { call } from "@/helpers/http"
+import { prependCoverUrlToImages } from "@/helpers/prepender"
 
 let categoriesInLocalMemory = {}
 let ingredientInLocalMemory = {}
-
-export const getAllDrinks = async ()=>{
-    let drinks = await call({uri:'drinks'})
-
-    return prependCoverUrlToImages(drinks)
-}
-
-export const searcher = async (word)=>{
-  if(word == 'todos' ||word == 'tragos' || word == 'todos' || word == 'all') return await getAllDrinks()
+let lastSearchResult = []
+/**
+ * 
+ * @param {String} word 
+ * @param {Number} page 
+ * @returns {{Object, Array}} {Metadata, Drinks}
+ */
+export const searcher = async (word = 'all', page = 1)=>{
+  if (word == 'todos' ||word == 'tragos' || word == 'todos' || word == 'all') return returnCall(undefined, page);
 
   const foundCategory = await searcherForCategory(word)
-  if (foundCategory) return prependCoverUrlToImages(await call({ uri: `drinks?category=${word}` }));
+  if (foundCategory) return returnCall(`category=${word}`, page);
 
   const foundIngredient = await searcherForIngredient(word)
-  if(foundIngredient) return prependCoverUrlToImages(await call({uri:`drinks?ingredient=${foundIngredient.name}`}));
+  if (foundIngredient) return returnCall(`ingredient=${foundIngredient.name}`, page);
 
-  const drink = await call({uri: `drinks?name=${word}`})
-  
-  return prependCoverUrlToImages(drink)
+  return returnCall(`name=${word}`, page)
 }
 
 export const getRandomDrink = async ()=>{
@@ -34,23 +33,6 @@ export const getDrinkByID = async (drinkID)=>{
 
   return prependCoverUrlToImages(drink)
 }
-
-function prependCoverUrlToImages(arrayOfDrinks) 
-{
-    if (Array.isArray(arrayOfDrinks)) {
-      arrayOfDrinks.forEach(drink => {
-        if (drink.hasOwnProperty('cover')) {
-          drink.cover = `http://localhost:9763${drink.cover}`
-        }
-      })
-    } else {
-      if (arrayOfDrinks.hasOwnProperty('cover')) {
-        arrayOfDrinks.cover = `http://localhost:9763${arrayOfDrinks.cover}`
-      }
-    }
-
-    return arrayOfDrinks
-  }
 
 /**
  * Verifica si no tenemos las categorias posibles guardadas en la mejoria 
@@ -77,4 +59,11 @@ async function searcherForIngredient(word)
     ingredientInLocalMemory = await call({uri:'ingredients'})
   }
   return ingredientInLocalMemory.find(ingredient => ingredient.name.includes(word))
+}
+
+async function returnCall(uri, page = 1)
+{
+  let fetch =await call({ uri: `drinks/paginate?page=${page}&perPage=6${uri ? '&' + uri : ''}` });
+
+  return {metaData: fetch.metadata, drinks:prependCoverUrlToImages(fetch.drinks)}
 }
