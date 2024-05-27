@@ -23,13 +23,15 @@ export const searcher = async (word = 'all', page = 1)=>{
 }
 
 export const getRandomDrink = async ()=>{
-  let drink = await call({uri:'drinks/random'})
+  const response = await call({uri:'drinks/random'})
+  const drink = response.data
 
   return prependCoverUrlToImages(drink[0])
 }
 
 export const getDrinkByID = async (drinkID)=>{
-  let drink = await call({uri:`drinks/${drinkID}`})
+  const response = await call({uri:`drinks/${drinkID}`})
+  const drink = response.data
 
   return prependCoverUrlToImages(drink)
 }
@@ -43,9 +45,10 @@ export const getDrinkByID = async (drinkID)=>{
 async function searcherForCategory(word)
 {
   if (Object.keys(categoriesInLocalMemory).length === 0 ) {
-    categoriesInLocalMemory = await call({uri:'categories'})
+    const response = await call({uri:'categories'})
+    categoriesInLocalMemory = response.data
   }
-  return categoriesInLocalMemory.find(category => category.name.includes(word));
+  return categoriesInLocalMemory.find(category => category.name.includes(word))
 }
 /**
  * Verifica si no tenemos los ingredientes posibles guardados en la mejoria 
@@ -56,14 +59,19 @@ async function searcherForCategory(word)
 async function searcherForIngredient(word)
 {
   if (Object.keys(ingredientInLocalMemory).length === 0) {
-    ingredientInLocalMemory = await call({uri:'ingredients'})
+    const response = await call({uri:'ingredients'})
+    ingredientInLocalMemory = response.data
   }
   return ingredientInLocalMemory.find(ingredient => ingredient.name.includes(word))
 }
 
 async function returnCall(uri, page = 1)
 {
-  let fetch =await call({ uri: `drinks/paginate?page=${page}&perPage=6${uri ? '&' + uri : ''}` });
+  let fetch = await call({ uri: `drinks/paginate?page=${page}&perPage=6${uri ? '&' + uri : ''}` })
 
-  return {metaData: fetch.metadata, drinks:prependCoverUrlToImages(fetch.drinks)}
+  if (fetch.error === null) {
+    fetch = fetch.data
+    return {metaData: fetch.metadata, drinks:prependCoverUrlToImages(fetch.drinks)}
+  }
+  return {metaData: {}, drinks:{}}
 }

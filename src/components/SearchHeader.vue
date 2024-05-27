@@ -41,7 +41,7 @@ const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
                 @update:search-word="e =>{ wordInSearchVar = e, processingForm = false}"
                 />
         </form>
-        <a href="dashboard" class="hover:underline text-lg pt-2 text-text-100">Panel</a>
+        <router-link to="/dashboard" class="hover:underline text-lg pt-2 text-text-100">Panel</router-link>
     </header>
     <nav 
     v-if="withNavBar"

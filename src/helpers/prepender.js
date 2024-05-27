@@ -1,16 +1,20 @@
+const BASE_URL = 'http://localhost:9763'
+
+function addBaseUrlToCover (drink) {
+  if (drink.hasOwnProperty('cover')) {
+    return {
+      ...drink,
+      cover: `${BASE_URL}${drink.cover}`
+    };
+  }
+  return drink;
+}
+
 export function prependCoverUrlToImages(arrayOfDrinks) 
 {
-    if (Array.isArray(arrayOfDrinks)) {
-      arrayOfDrinks.forEach(drink => {
-        if (drink.hasOwnProperty('cover')) {
-          drink.cover = `http://localhost:9763${drink.cover}`
-        }
-      })
-    } else {
-      if (arrayOfDrinks.hasOwnProperty('cover')) {
-        arrayOfDrinks.cover = `http://localhost:9763${arrayOfDrinks.cover}`
-      }
-    }
-
-    return arrayOfDrinks
+  if (Array.isArray(arrayOfDrinks)) {
+    return arrayOfDrinks.map(addBaseUrlToCover);
+  } else {
+    return addBaseUrlToCover(arrayOfDrinks);
   }
+}

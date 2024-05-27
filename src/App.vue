@@ -3,7 +3,7 @@ import FooterSection from '@/components/FooterSection.vue';
 </script>
 
 <template>
-  <main class="bg-bg-100 ">
+  <main class="bg-bg-100">
     <router-view></router-view>
   </main>
   <FooterSection/>
