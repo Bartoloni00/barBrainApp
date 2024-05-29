@@ -1,10 +1,13 @@
 <script setup>
 import BaseButton from '@/components/common/BaseButton.vue'
 import BaseTitle from '@/components/BaseTitle.vue'
+import EyeButton from '@/components/common/EyeButton.vue'
 
 import useAuth from '@/composition/useAuth.js'
+import useEye from '@/composition/useEye.js'
 
-const {handleLogin} = useAuth()
+const { handleLogin } = useAuth()
+const { passwordInputType, handleEye, iconEye } = useEye()
 
 const form = defineModel({
   default: {
@@ -14,20 +17,16 @@ const form = defineModel({
 })
 </script>
 <template>
-  <section class="max-w-[800px] h-screen flex items-center justify-center m-auto">
+  <section class="max-w-[800px] min-h-[92vh] flex items-center justify-center m-auto">
     <form
-    class="bg-white dark:bg-zinc-900 shadow-2xl rounded-2xl overflow-hidden border-4 border-primary-100 dark:border-primary-300"
+    class="bg-text-100 dark:bg-zinc-900 shadow-2xl rounded-2xl overflow-hidden border-4 border-accent-100 dark:border-accent-200"
     @submit.prevent="handleLogin(form)"
     action="#"
     >
       <div class="px-8 py-10 md:px-10">
-        <BaseTitle
-          class="text-4xl"
-        >
-          ¡Bienvenido nuevamente señor admin!
-        </BaseTitle>
+        <BaseTitle class="text-3xl text-accent-100">¡Bienvenido al Panel de administrador!</BaseTitle>
         <p class="text-center text-text-300 dark:text-text-300 mt-3">
-          Te extrañamos, inicia sesion para ingresar al panel
+          ¡¡¡Inicia sesion para ingresar al panel!!!
         </p>
         <div class="mt-10">
           <div class="relative">
@@ -38,7 +37,7 @@ const form = defineModel({
             >
             <input
               placeholder="you@example.com"
-              class="block w-full px-4 py-3 mt-2 text-bg-100 bg-white border-2 rounded-lg dark:border-text-300 dark:bg-bg-100 dark:text-text-100 focus:border-primary-200 dark:focus:border-primary-100 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-primary-100"
+              class="block w-full px-4 py-3 mt-2 text-bg-100 bg-text-100 border-2 rounded-lg dark:border-text-300 dark:bg-bg-100 dark:text-text-100 focus:border-accent-200 dark:focus:border-accent-100 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-accent-100"
               name="email"
               id="email"
               type="email"
@@ -51,17 +50,22 @@ const form = defineModel({
               for="password"
               >Contraseña</label
             >
-            <input
+            <div
+            class="flex justify-center items-center w-full bg-text-100 border-2 rounded-lg mt-2"
+            >
+              <input
+              class="block w-full px-4 py-3 text-bg-100 bg-text-100 border-2 rounded-lg dark:border-text-300 dark:bg-bg-100 dark:text-text-100 focus:border-accent-200 dark:focus:border-accent-100 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-accent-100"
               placeholder="••••••••"
-              class="block w-full px-4 py-3 mt-2 text-bg-100 bg-text-100 border-2 rounded-lg dark:border-text-300 dark:bg-bg-100 dark:text-text-100 focus:border-primary-200 dark:focus:border-primary-100 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-primary-100"
               name="password"
               id="password"
-              type="password"
+              :type="passwordInputType"
               v-model="form.password"
             />
+            <EyeButton :visibility="iconEye" @click="handleEye"/>
+            </div>
           </div>
           <div class="mt-10 flex items-center justify-center">
-            <BaseButton color="primary">Iniciar sesion</BaseButton>
+            <BaseButton color="accent" class="text-xl">Iniciar sesion</BaseButton>
           </div>
         </div>
       </div>
