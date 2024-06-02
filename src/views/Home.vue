@@ -4,7 +4,6 @@ import BaseTitle from '@/components/BaseTitle.vue'
 import SearchInput from '@/components/SearchInput.vue'
 import BaseButton from '@/components/common/BaseButton.vue'
 import useSearch from '@/composition/useSearch.js'
-import VisibilityOff from '@/assets/icons/VisibilityOff.vue'
 
 const {wordInSearchVar, handleSearchDrink} = useSearch()
 

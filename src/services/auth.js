@@ -13,10 +13,12 @@ if (localStorage.getItem('userData')) {
 }
 
 export async function login({email, password}) {
+    clearSessionData()
     const body = {email, password}
     const response = await call({uri: 'login', method: 'POST', body})
 
     if(response.success) {
+        console.log(response.data);
         updateSessionData(response.data)
     } else {
         throw new Error(response.error)
@@ -29,6 +31,7 @@ export async function logout() {
     if (!response) {
         clearSessionData()
     } else {
+        clearSessionData()
         throw new Error('No se pudo cerrar sesion')
     }
 }

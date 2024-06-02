@@ -26,6 +26,9 @@ const bgColors = computed(()=>{
     case "primary":
       return {border:"border-primary-200",bg:"bg-primary-200"}
       break
+    case "success":
+      return {border:"border-green-700",bg:"bg-green-700"}
+      break
     default:
       return {border:"border-bg-200",bg:"bg-bg-200"}
       break;

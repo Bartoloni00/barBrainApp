@@ -28,20 +28,19 @@ let user = {
     token: null
 }
 
-const isAdmin = user.email !== 'admin@barbraindb.com'
-const adminLog = user.id && isAdmin
-
 subscribeToAuth(newUserData => { user = {...newUserData} })
 
 router.beforeEach((to, from, next) => {
-    if(to.meta.requiresAuth && !user.id && isAdmin)
-    {
-        next('/login')
-    } else if(to.path == '/login' && adminLog) {
-        next('/dashboard')
+    const isAdmin = user.email === 'admin@barbraindb.com';
+    const isLoggedIn = !!user.id;
+
+    if (to.meta.requiresAuth && (!isLoggedIn || !isAdmin)) {
+        next('/login');
+    } else if (to.path === '/login' && isLoggedIn && isAdmin) {
+        next('/dashboard');
     } else {
-        next()
+        next();
     }
-})
+});
 
 export default router
