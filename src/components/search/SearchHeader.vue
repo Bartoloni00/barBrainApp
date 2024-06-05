@@ -1,7 +1,7 @@
 <script setup>
-import BaseTitle from './BaseTitle.vue';
-import SearchInput from './SearchInput.vue';
-import useSearch from '../composition/useSearch.js'
+import BaseTitle from '@/components/common/BaseTitle.vue'
+import SearchInput from '@/components/search/SearchInput.vue';
+import useSearch from '@/composition/useSearch.js'
 
 const props = defineProps({
     withNavBar:{
@@ -33,7 +33,7 @@ const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
         <router-link to="/" v-if="withLogo">
             <BaseTitle class="text-2xl"></BaseTitle>
         </router-link>
-        <form @submit.prevent="handleSearchDrink" action="#" method="get" class="w-full mt-5" v-if="withSearch">
+        <form @submit.prevent="handleSearchDrink(false)" action="#" method="get" class="w-full mt-5" v-if="withSearch">
             <SearchInput 
                 type="search" 
                 name="searchBar" 

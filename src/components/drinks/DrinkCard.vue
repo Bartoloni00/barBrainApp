@@ -1,5 +1,5 @@
 <script setup>
-import BaseTag from './common/BaseTag.vue';
+import BaseTag from '@/components/common/BaseTag.vue';
 
     const props = defineProps({
         drink:{

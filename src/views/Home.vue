@@ -1,7 +1,7 @@
 <script setup>
-import SearchHeader from '@/components/SearchHeader.vue'
-import BaseTitle from '@/components/BaseTitle.vue'
-import SearchInput from '@/components/SearchInput.vue'
+import SearchHeader from '@/components/search/SearchHeader.vue'
+import BaseTitle from '@/components/common/BaseTitle.vue'
+import SearchInput from '@/components/search/SearchInput.vue'
 import BaseButton from '@/components/common/BaseButton.vue'
 import useSearch from '@/composition/useSearch.js'
 
@@ -16,7 +16,7 @@ const {wordInSearchVar, handleSearchDrink} = useSearch()
     />
     <section class="flex justify-center items-center flex-col h-[78vh] pb-[10vh]">
         <BaseTitle class="text-8xl"></BaseTitle>
-        <form action="#" @submit.prevent="handleSearchDrink" method="get" class="max-w-[550px] w-full flex flex-col items-center justify-center mt-5" >
+        <form action="#" @submit.prevent="handleSearchDrink(false)" method="get" class="max-w-[550px] w-full flex flex-col items-center justify-center mt-5" >
             <SearchInput 
                 type="search" 
                 name="searchBar" 

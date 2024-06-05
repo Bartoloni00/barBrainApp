@@ -1,6 +1,6 @@
 <script setup>
 import BaseButton from '@/components/common/BaseButton.vue';
-import PreviewImage from './PreviewImage.vue';
+import PreviewImage from '@/components/common/PreviewImage.vue';
 import useAddDrink from '@/composition/admin/useAddDrink.js'
 
 const {

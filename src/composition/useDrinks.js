@@ -14,7 +14,6 @@ export default function useDrinks(word = 'all', page = 1)
       // Verificar si se proporcionan nuevos valores de word y page, si no, usar los valores predeterminados
       const searchWord = newWord !== undefined ? newWord : word;
       const searchPage = newPage !== undefined ? newPage : page;
-
       searcher(searchWord, searchPage).then(result => {
         if (!pushResults.value) {
           drinks.value = result.drinks;
@@ -23,8 +22,8 @@ export default function useDrinks(word = 'all', page = 1)
           drinks.value.push(...result.drinks);
         }
         metaData.value = result.metaData;
-        loadingDrinks.value = false;
-      });
+      })
+      .finally(()=>loadingDrinks.value = false)
     }
 
    

@@ -1,5 +1,5 @@
 <script setup>
-import DrinkCard from '@/components/DrinkCard.vue'
+import DrinkCard from '@/components/drinks/DrinkCard.vue'
 
 const props = defineProps({
     drinks:{

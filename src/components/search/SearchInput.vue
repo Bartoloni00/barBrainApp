@@ -40,6 +40,6 @@ defineEmits(['update:searchWord'])
   placeholder="Buscar..."
   />
   <MicrophoneIcon color="yellow"/>
-  <LensIcon color="yellow"/>
+  <button type="submit"><LensIcon color="yellow"/></button>
 </label>
 </template>

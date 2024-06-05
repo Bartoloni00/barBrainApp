@@ -8,12 +8,18 @@ export default function useSearch ()
     const processingForm = ref(false)
     const wordInSearchVar = ref('')
     const router = useRouter()
-    const handleSearchDrink = ()=>{
+    const handleSearchDrink = (isAdminSeach = false)=>{
         if (processingForm.value) return;
         processingForm.value = true
         if(wordInSearchVar.value == '') return;
 
-        router.push({path: '/search', query:{search: wordInSearchVar.value}})
+        if (isAdminSeach) {
+            processingForm.value = false
+            router.push({path: '/dashboard', query:{search: wordInSearchVar.value}})
+        } else {
+            processingForm.value = false
+            router.push({path: '/search', query:{search: wordInSearchVar.value}})
+        }
     }
     return {
         processingForm,

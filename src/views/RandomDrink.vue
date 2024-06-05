@@ -1,7 +1,7 @@
 <script setup>
-import SearchHeader from '@/components/SearchHeader.vue';
-import LoadingContent from '@/components/LoadingContent.vue'
-import DrinkDetails from '@/components/DrinkDetails.vue'
+import SearchHeader from '@/components/search/SearchHeader.vue';
+import LoadingContent from '@/components/common/LoadingContent.vue'
+import DrinkDetails from '@/components/drinks/DrinkDetails.vue'
 
 import useRandomDrink from '@/composition/useRandomDrink';
 

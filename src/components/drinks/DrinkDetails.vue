@@ -1,5 +1,5 @@
 <script setup>
-import BaseTitle from './BaseTitle.vue';
+import BaseTitle from '@/components/common/BaseTitle.vue';
 
     const props = defineProps({
         drink:{

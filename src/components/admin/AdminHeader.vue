@@ -1,7 +1,7 @@
 <script setup>
 import useAuth from '@/composition/useAuth.js'
 import BaseButton from '@/components/common/BaseButton.vue'
-import BaseTitle from '@/components/BaseTitle.vue'
+import BaseTitle from '@/components/common/BaseTitle.vue'
 
 const {handleLogout} = useAuth()
 </script>

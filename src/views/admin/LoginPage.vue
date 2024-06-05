@@ -1,6 +1,6 @@
 <script setup>
 import BaseButton from '@/components/common/BaseButton.vue'
-import BaseTitle from '@/components/BaseTitle.vue'
+import BaseTitle from '@/components/common/BaseTitle.vue'
 import EyeButton from '@/components/common/EyeButton.vue'
 
 import useAuth from '@/composition/useAuth.js'

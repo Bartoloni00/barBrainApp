@@ -1,15 +1,15 @@
 <script setup>
-import LoadingContent from "@/components/LoadingContent.vue";
-import SearchHeader from "@/components/SearchHeader.vue";
+import LoadingContent from "@/components/common/LoadingContent.vue";
+import SearchHeader from "@/components/search/SearchHeader.vue";
 
 import useDrinks from "@/composition/useDrinks.js"
 import {useRoute} from 'vue-router'
 import {ref, watch} from 'vue'
 
-import ListDrinks from "./searchDrinks/ListDrinks.vue";
-import SearchImages from "./searchDrinks/SearchImages.vue";
-import PaginationSection from "./searchDrinks/PaginationSection.vue";
-import NoResults from './searchDrinks/NoResults.vue';
+import ListDrinks from "@/components/drinks/ListDrinks.vue";
+import SearchImages from "@/components/search/SearchImages.vue";
+import PaginationSection from "@/components/paginator/PaginationSection.vue";
+import NoResults from '@/components/search/NoResults.vue';
 
 const route = useRoute()
 const wordSeacher = ref()

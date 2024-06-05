@@ -67,7 +67,7 @@ async function searcherForIngredient(word)
 
 async function returnCall(uri, page = 1)
 {
-  let fetch = await call({ uri: `drinks/paginate?page=${page}&perPage=6${uri ? '&' + uri : ''}` })
+  let fetch = await call({ uri: `drinks/paginate?page=${page}&perPage=20${uri ? '&' + uri : ''}` })
 
   if (fetch.error === null) {
     fetch = fetch.data
