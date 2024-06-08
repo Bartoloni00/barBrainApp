@@ -1,3 +1,5 @@
+import { clearSessionData } from "../services/auth";
+
 export async function call({ uri, method = "GET", body = undefined, headers = {} }) {
   const url = `http://localhost:9763/${uri}`;
   const options = {
@@ -28,5 +30,11 @@ export async function call({ uri, method = "GET", body = undefined, headers = {}
       }
       return response.json();
     })
-    .catch(error => { throw error });
+    .catch(error => { 
+      if (error.error != null && error.error.includes('EXPIRED_TOKEN')) {
+        console.log('entro al if del catch http');
+        clearSessionData()
+      }
+      throw error
+     });
 }

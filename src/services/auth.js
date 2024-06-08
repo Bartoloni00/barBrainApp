@@ -64,7 +64,7 @@ function updateSessionData( newData ) {
     notifyAll()
 }
 
-function clearSessionData() {
+export function clearSessionData() {
     userData = {
         id: null,
         email: null,

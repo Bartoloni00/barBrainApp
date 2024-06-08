@@ -35,11 +35,23 @@ const moreResults = () => {
       if(metaData.value.page >= metaData.value.totalPages) return;
       uploadSearcherDrinks(wordSeacher.value, metaData.value.page + 1)
     }
+
+const drinkSelected = ref({})
+
+const updateDrink = (drink) => {
+    drinkSelected.value = {...drink}
+    showUpdateForm()
+}
+
+const deleteDrink = (drink) => {
+    showDeleteForm()
+    drinkSelected.value = drink
+}
 </script>
 <template>
     <AdminHeader/>
     <section class="flex justify-evenly min-h-screen py-4">
-        <section class="border border-primary-100 rounded-md w-4/12 min-h-[80vh]">
+        <section class="border border-primary-100 rounded-md w-4/12">
             <header class="border-b-2 border-accent-100 m-2">
                 <nav class="m-2">
                     <ul class="flex gap-3 justify-evenly">
@@ -49,9 +61,9 @@ const moreResults = () => {
                     </ul>
                 </nav>
             </header>
-            <FormView :formShowed="formShowed"/>
+            <FormView :formShowed="formShowed" :drinkSelected="drinkSelected"/>
         </section>
-        <section class="border border-primary-100 rounded-md w-4/12 min-h-[80vh] px-2">
+        <section class="border border-primary-100 rounded-md w-4/12 px-2">
             <header class="border-b-2 border-accent-100 p-2">
                 <form action="#" @submit.prevent="handleSearchDrink(true)" method="get">
                     <SearchInput 
@@ -65,8 +77,12 @@ const moreResults = () => {
             <main class="text-xl text-white text-center">
                 <LoadingContent :loading="!loadingDrinks">
                     <template v-if="drinks.length >= 1">
-                        <template v-for="drink in drinks" >
-                            <DrinkCard :drink="drink"/>
+                        <template v-for="drink in drinks">
+                            <DrinkCard 
+                            :drink="drink"
+                            @edit:id="emit => updateDrink(emit)"
+                            @delete:id="emit => deleteDrink(emit)"
+                            />
                         </template>
                     </template>
                     <NoResults v-else :word-seacher="wordSeacher" class="m-auto ml-4"/>
