@@ -1,5 +1,7 @@
 <script setup>
 import BaseTitle from '@/components/common/BaseTitle.vue';
+import IngredientsTable from '@/components/common/IngredientsTable.vue';
+import BaseTag from '@/components/common/BaseTag.vue';
 
     const props = defineProps({
         drink:{
@@ -12,14 +14,12 @@ import BaseTitle from '@/components/common/BaseTitle.vue';
 <section class="min-h-[78vh] flex items-center justify-center gap-5 flex-wrap-reverse">
     <img :src="drink.cover" :alt="drink.name" class="rounded border-2 border-accent-100">
     <article class="text-text-100 max-w-[500px]">
-        <BaseTitle class="text-3xl text-center text-accent-100">{{ drink.name }}</BaseTitle>
-        <h2>{{ drink.category }}</h2>
+        <div class="flex items-center justify-center gap-3">
+            <BaseTitle class="text-3xl text-center text-accent-100 capitalize">{{ drink.name }}</BaseTitle>
+            <BaseTag :text="drink.name">{{ drink.category }}</BaseTag>
+        </div>
         <p class="py-2">{{ drink.descripcion }}</p>
-        <ul>
-            <li v-for="ingredient in drink.ingredients">
-                <p>{{ ingredient.amount }} de {{ ingredient.name }}</p>
-            </li>
-        </ul>
+        <IngredientsTable :ingredients="drink.ingredients"/>
     </article>
 </section>
 </template>

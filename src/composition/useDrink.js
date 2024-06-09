@@ -22,8 +22,10 @@ export default function useDrink ()
 
 	onMounted(async () => {
 		loadingDrink.value = true
-		drink.value = await getDrinkByID(route.params.id)
-		loadingDrink.value = false
+		getDrinkByID(route.params.id)
+		.then(res => drink.value = res)
+		.catch(err => drink.value = false)
+		.finally( () => loadingDrink.value = false )
 	})
 
 	return {

@@ -1,33 +1,32 @@
 <script setup>
-import { watch} from 'vue'
+import { watch } from 'vue'
 import BaseButton from '@/components/common/BaseButton.vue';
 import useFormCommon from '@/composition/admin/useFormCommon.js'
+import useUpdateDrink from '@/composition/admin/useUpdateDrink.js'
 import PreviewImage from '@/components/common/PreviewImage.vue';
+import isObjectEmpty from '@/helpers/isObjectEmpty.js'
 
 const props = defineProps({
     drink:{
         type: Object,
-        required:true
+        required: true
     }
 })
-const {form, handleFileUpload, addIngredient, removeIngredient} = useFormCommon()
-form.value = {...props.drink}
-watch(()=>props.drink, (newVal, oldVal) => {
+
+const { form, handleFileUpload, addIngredient, removeIngredient } = useFormCommon()
+const { handleUpdateDrink } = useUpdateDrink()
+
+form.value = { ...props.drink }
+watch(() => props.drink, (newVal, oldVal) => {
     form.value = newVal
 });
-const handleUpdateDrink = () => {
-  console.log('Form data:', form.value);
-  // Aquí puedes manejar la lógica para enviar el formulario
-};
-const isObjectEmpty = (obj) => {
-    return Object.keys(obj).length === 0 && obj.constructor === Object;
-}
 </script>
+
 <template>
   <template v-if="isObjectEmpty(drink)">
     <h2 class="text-2xl text-center text-accent-100">Elige el trago que quieres editar</h2>
   </template>
-  <form v-else @submit.prevent="handleUpdateDrink" class="mx-2 mb-2 flex flex-col gap-2">
+  <form v-else @submit.prevent="handleUpdateDrink(form, drink._id)" class="mx-2 mb-2 flex flex-col gap-2">
       <div class="relative">
         <label class="block mb-3 text-sm font-medium text-text-300 dark:text-text-100" for="name">Nombre</label>
         <input

@@ -9,7 +9,7 @@
                 target="_blank" 
                 class="hover:underline"
                 title="Github de Bartoloni Abraham"
-                >&copy; Bartoloni Abraham</a>
+                >&copy; Bartoloni Abraham 2024</a>
             </li>
             <li>
                 <a 

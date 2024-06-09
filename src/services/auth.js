@@ -18,7 +18,6 @@ export async function login({email, password}) {
     const response = await call({uri: 'login', method: 'POST', body})
 
     if(response.success) {
-        console.log(response.data);
         updateSessionData(response.data)
     } else {
         throw new Error(response.error)

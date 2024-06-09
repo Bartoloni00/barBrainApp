@@ -13,8 +13,8 @@ export default function useAddDrink() {
       formData.append(`ingredients[${index}][amount]`, ingredient.amount);
     });
 
-    try {
-      const response = await addDrink(formData);
+    addDrink(formData)
+    .then(res => {
       form = {
         name: '',
         descripcion: '',
@@ -24,10 +24,11 @@ export default function useAddDrink() {
         preview: null
       };
 
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+      console.log(res);
+    })
+    .catch(err => {
+      alert(err)
+    })
   };
 
   return {
