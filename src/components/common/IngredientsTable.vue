@@ -16,7 +16,7 @@ const props = defineProps({
             </thead>
             <tbody>
                 <tr v-for="ingredient in ingredients" class="border border-accent-100">
-                    <td class="border-r border-accent-100">{{ingredient.name}}</td>
+                    <td class="border-r border-accent-100"><router-link :to="`/search?search=${ingredient.name}`">{{ingredient.name}}</router-link></td>
                     <td>{{ ingredient.amount }}</td>
                 </tr>
             </tbody>

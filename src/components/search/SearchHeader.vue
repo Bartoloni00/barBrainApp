@@ -31,7 +31,7 @@ const {processingForm, wordInSearchVar, handleSearchDrink} = useSearch()
 <template>
     <header class="h-[14vh] bg-bg-100 text-text-100 flex items-baseline px-5 justify-end gap-5">
         <router-link to="/" v-if="withLogo">
-            <BaseTitle class="text-2xl"></BaseTitle>
+            <BaseTitle class="text-l sm:text-2xl"></BaseTitle>
         </router-link>
         <form @submit.prevent="handleSearchDrink(false)" action="#" method="get" class="w-full mt-5" v-if="withSearch">
             <SearchInput 

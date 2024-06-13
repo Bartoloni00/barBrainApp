@@ -6,7 +6,7 @@ import BaseTitle from '@/components/common/BaseTitle.vue'
 const {handleLogout} = useAuth()
 </script>
 <template>
-    <header class="w-full flex justify-between p-2">
+    <header class="w-full flex justify-between items-center p-2 border-b-2 border-bg-300 max-w-screen-2xl m-auto">
         <nav>
             <router-link to="/">
                 <BaseTitle class="text-2xl"></BaseTitle>

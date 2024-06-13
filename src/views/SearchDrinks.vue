@@ -38,7 +38,7 @@ const moreResults = () => {
 </script>
 <template>
     <SearchHeader :word-searcher="wordSeacher"/>
-    <main class="min-h-[70vh]">
+    <main class="min-h-[70vh] max-w-screen-2xl">
         <LoadingContent :loading="!loadingDrinks">
             <template v-if="drinks.length >= 1">
                 <ListDrinks
@@ -51,7 +51,7 @@ const moreResults = () => {
                     :drinks="drinks"
                 />
             </template>
-            <NoResults v-else :word-seacher="wordSeacher"/>
+            <NoResults v-else :word-seacher="wordSeacher" class="ml-52"/>
             <PaginationSection v-if="metaData.totalPages > 1 && metaData.page <= metaData.totalPages"
                 :showing="drinks.length"
                 :meta-data="metaData"

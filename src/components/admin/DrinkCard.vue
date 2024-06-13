@@ -18,7 +18,7 @@ const emit = defineEmits(['edit:id', 'delete:id'])
         <router-link :to="'drinks/' + drink._id">
             <h2 class="text-2xl font-semibold text-accent-100 capitalize">{{ drink.name }}</h2>
         </router-link>
-        <div class="flex gap-1 py-2">
+        <div class="flex gap-1 py-2 flex-wrap justify-end">
             <BaseButton 
                 color="accent"
                 @click="() => emit('edit:id', drink)"

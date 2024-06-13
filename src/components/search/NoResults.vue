@@ -7,7 +7,7 @@ const props = defineProps({
 })
 </script>
 <template>
-    <section class="flex flex-col gap-y-2 max-w-3xl ml-52 text-text-100">
+    <section class="flex flex-col gap-y-2 max-w-3xl text-text-100">
         <p class="text-lg">No se han encontrado resultados para tu búsqueda ({{ wordSeacher }}).</p>
         <span class="text-text-300">Sugerencias:</span>
         <ul class="text-text-300">

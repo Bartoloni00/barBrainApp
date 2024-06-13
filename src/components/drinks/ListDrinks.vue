@@ -14,14 +14,15 @@ const props = defineProps({
 </script>
 <template>
             <section class="flex min-h-[90vh]">
-                <section class="flex flex-col gap-y-2 max-w-3xl ml-52"  >
+                <section class="flex flex-col gap-y-2 max-w-3xl md:ml-52 mx-2">
                     <template v-for="drink in drinks">
                         <DrinkCard 
                             :drink="drink"
                         />
                     </template>
                 </section>
-            <article v-if="drinks.length >= 3" class="w-ful max-w-96 mr-52 flex flex-wrap gap-2 h-[460px] items-center justify-center">
+            <div class="hidden md:block">
+                <article v-if="drinks.length >= 3" class="w-full max-w-96 mr-2 md:mr-52 flex flex-wrap gap-2 min-h-[460px] items-center justify-center">
                 <router-link :to="'drinks/'+drinks[0]._id" class="col-span-2">
                     <img class="rounded-2xl border border-bg-300" :src="drinks[2].cover" alt="">
                 </router-link>
@@ -32,5 +33,6 @@ const props = defineProps({
                     <img class="rounded-2xl border border-bg-300" :src="drinks[0].cover" alt="">
                 </router-link>
             </article>
+            </div>
         </section>
 </template>

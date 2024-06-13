@@ -50,11 +50,11 @@ const deleteDrink = (drink) => {
 </script>
 <template>
     <AdminHeader/>
-    <section class="flex justify-evenly min-h-screen py-4">
-        <section class="border border-primary-100 rounded-md w-4/12">
+    <section class="flex sm:justify-evenly sm:min-h-screen py-4 flex-wrap max-w-screen-2xl m-auto">
+        <section class="border border-primary-100 rounded-md sm:w-4/12 sm:min-w-80 ">
             <header class="border-b-2 border-accent-100 m-2">
                 <nav class="m-2">
-                    <ul class="flex gap-3 justify-evenly">
+                    <ul class="flex gap-3 justify-evenly flex-wrap-reverse">
                         <li><BaseButton @click="showAddForm" color="success">Agregar</BaseButton></li>
                         <li><BaseButton @click="showUpdateForm" color="accent">Actualizar</BaseButton></li>
                         <li><BaseButton @click="showDeleteForm" color="primary">Eliminar</BaseButton></li>
@@ -63,7 +63,7 @@ const deleteDrink = (drink) => {
             </header>
             <FormView :formShowed="formShowed" :drinkSelected="drinkSelected"/>
         </section>
-        <section class="border border-primary-100 rounded-md w-4/12 px-2">
+        <section class="border border-primary-100 rounded-md sm:w-4/12 sm:px-2 sm:min-w-80">
             <header class="border-b-2 border-accent-100 p-2">
                 <form action="#" @submit.prevent="handleSearchDrink(true)" method="get">
                     <SearchInput 
@@ -85,7 +85,7 @@ const deleteDrink = (drink) => {
                             />
                         </template>
                     </template>
-                    <NoResults v-else :word-seacher="wordSeacher" class="m-auto ml-4"/>
+                    <NoResults v-else :word-seacher="wordSeacher" class="m-auto mx-8 mt-8"/>
                     <PaginationSection v-if="metaData.totalPages > 1 && metaData.page <= metaData.totalPages"
                         :showing="drinks.length"
                         :meta-data="metaData"

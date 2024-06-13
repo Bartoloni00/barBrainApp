@@ -16,7 +16,7 @@ const props = defineProps({
 defineEmits(['update:more'])
 </script>
 <template>
-    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between sm:flex-row-reverse sm:mx-52">
+    <div class="flex items-center justify-between flex-row-reverse sm:mx-52">
         <InfoResults
             :totalResults="props.metaData.totalCount"
             :showing="showing"
